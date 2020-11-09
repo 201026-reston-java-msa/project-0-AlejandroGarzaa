@@ -2,3 +2,21 @@
 2020-11-06 13:50:47 WARN  CustomerDAO:48 - Unable to retrieve customers from the db
 2020-11-06 13:53:25 WARN  CustomerDAO:48 - Unable to retrieve customers from the db
 2020-11-06 13:57:42 WARN  CustomerDAO:48 - Unable to retrieve customers from the db
+2020-11-08 20:06:59 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 20:30:56 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 20:31:26 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:05:19 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:05:47 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:07:15 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:11:58 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:12:36 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:13:40 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:15:06 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:18:46 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:19:16 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:19:49 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:25:44 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:30:50 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:31:04 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:42:56 INFO  ConnectionUtil:33 - successfull connection
+2020-11-08 21:43:09 INFO  ConnectionUtil:33 - successfull connection

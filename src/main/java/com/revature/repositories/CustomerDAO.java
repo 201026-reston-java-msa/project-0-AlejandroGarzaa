@@ -1,14 +1,10 @@
 package com.revature.repositories;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-
 import java.util.Scanner;
-
 
 import com.revature.util.ConnectionUtil;
 
@@ -46,6 +42,7 @@ public class CustomerDAO {
 
     }
 
+    // mthod to regiter customer
     public void register() {
 
         String pass;
@@ -93,4 +90,48 @@ public class CustomerDAO {
         }
 
     }
+
+    // method to check username
+    public boolean usercheck(String email) {
+
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select email from customer where email = '" + email + "'";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            String result = rs.getString("email");
+            System.out.println(result);
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Unable to Login");
+            // e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    // method to validate password
+    public boolean passcheck(String email, String password) {
+
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select passcode from customer where email = '" + email + "'";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            String result = rs.getString("passcode");
+            if (result.equals(password)) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Unable to Login");
+            // e.printStackTrace();
+            return false;
+        }
+
+    }
+
 }

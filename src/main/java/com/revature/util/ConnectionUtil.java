@@ -30,7 +30,7 @@ public class ConnectionUtil {
 					prop.getProperty("username"),
 					prop.getProperty("password")
                     );
-                    System.out.println("successfull connection");
+                    log.info("successfull connection");
 		} catch (SQLException e) {
 			log.warn("Unable to obtain connection to database", e);
 		} catch (FileNotFoundException e) {
