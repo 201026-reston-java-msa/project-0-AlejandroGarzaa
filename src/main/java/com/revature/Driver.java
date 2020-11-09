@@ -22,7 +22,7 @@ public class Driver {
       // System.out.println(cd.status("tom@gmail.com", "tompassword"));
        
        //td.balance("alejandro@gmail.com","alejandropassword");
-       td.withdraw(1, 100);
+       td.deposit(1, 100);
     
     }
 }
