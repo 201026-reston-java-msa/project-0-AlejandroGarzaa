@@ -18,7 +18,7 @@ public class CustomerDAO {
     public void findAll() {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select cust_id,first_name,last_name,email,phone,access_level from customer";
+            String sql = "select customer.cust_id, customer.first_name, customer.last_name, customer.email, customer.phone, accounts.account_number, accounts.account_status, accounts.balance from customer right join accounts on customer.cust_id = accounts.cust_id order by customer.cust_id;";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -28,11 +28,15 @@ public class CustomerDAO {
                 String lastname = rs.getString("last_name");
                 String email = rs.getString("email");
                 int phone = rs.getInt("phone");
-                int access = rs.getInt("access_level");
+                // int access = rs.getInt("access_level");
+                int acctnum = rs.getInt("account_number");
+                String status = rs.getString("account_status");
+                int balance = rs.getInt("balance");
 
                 // Customer c = new Customer(id, first_name, last_name, email, phone);
-                System.out.println("*****" + "\nId: " + id + "\nFirst Name: " + firstname + "\nLast Name: " + lastname
-                        + "\nEmail: " + email + "\nPhone: " + phone + "Access level: " + access);
+                System.out.println("**********" + "\nId: " + id + "\nFirst Name: " + firstname + "\nLast Name: " + lastname
+                        + "\nEmail: " + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum
+                        + "\nAccount active: " + status + "\nBalance: $" + balance);
             }
             rs.close();
 
@@ -90,8 +94,8 @@ public class CustomerDAO {
         }
 
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select cust_id from customer where email = '" + email +"'";
-            
+            String sql = "select cust_id from customer where email = '" + email + "'";
+
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
@@ -150,11 +154,12 @@ public class CustomerDAO {
         }
 
     }
-    
+
     // method to determine access level
-    public int accesslevel(String email, String password){
+    public int accesslevel(String email, String password) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select access_level from customer where email = '"+ email +"' and passcode = '"+ password +"'";
+            String sql = "select access_level from customer where email = '" + email + "' and passcode = '" + password
+                    + "'";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
@@ -169,34 +174,84 @@ public class CustomerDAO {
     }
 
     // method to check account status
-    public boolean status(String email, String password){
+    public boolean status(String email, String password) {
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select cust_id from customer where email = '" + email +"' and passcode = '" + password +"'";
-            
+            String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
+
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
             int id = rs.getInt("cust_id");
-            String sql2 = "select account_status from accounts where cust_id = '"+ id +"'";
+            String sql2 = "select account_status from accounts where cust_id = '" + id + "'";
             ResultSet rs2 = stmt.executeQuery(sql2);
             rs2.next();
             String stat = rs2.getString("account_status");
             stmt.close();
 
-            if(stat.equalsIgnoreCase("yes")){
+            if (stat.equalsIgnoreCase("yes")) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-           
+
         } catch (SQLException e) {
             System.out.println("Unable to get access level");
-            //e.printStackTrace();
+            // e.printStackTrace();
             return false;
         }
     }
 
+    // method to approve account
+    public void approveacct(int acctnum, String activate){
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "update accounts set account_status = '"+ activate +"' where account_number = '"+ acctnum +"'";
 
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+            System.out.println("Account number "+ acctnum + " has been activated.");
+
+        } catch (SQLException e) {
+            System.out.println("Unable to get access level");
+             e.printStackTrace();
+        
+        }
+    }
+    // cancel account
+    public void cancelacct(int acctnum){
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "delete from accounts where account_number = '"+ acctnum +"'";
+
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+            System.out.println("Account number "+ acctnum + " has been closed.");
+
+        } catch (SQLException e) {
+            System.out.println("Unable to close account.");
+             e.printStackTrace();
+        
+        }
+
+    }
+
+    // apply for account
+    public void apply(String email, String password){
+
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            int id = rs.getInt("cust_id");
+            String sql2 = "insert into accounts (cust_id,account_status,balance) values ('" + id + "', 'no', '0')";
+            stmt.execute(sql2);
+            stmt.close();
+            System.out.println("Your account is pending approval.");
+
+        } catch (SQLException e) {
+            System.out.println("Unable to create customer account");
+            e.printStackTrace();
+        }
+    }
 
     }
 

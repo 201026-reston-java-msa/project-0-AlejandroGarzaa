@@ -24,6 +24,9 @@ public class Driver {
        //td.balance("alejandro@gmail.com","alejandropassword");
        //td.transfer(1, 2, 100);
        //td.withdraw(4, 10000);
+       //cd.approveacct(4, "yes");
+       //cd.register();
+      // cd.apply("tom@gmail.com", "tompassword");
     
     }
 }
