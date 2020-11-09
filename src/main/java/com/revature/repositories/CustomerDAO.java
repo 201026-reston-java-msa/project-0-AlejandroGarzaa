@@ -82,6 +82,23 @@ public class CustomerDAO {
             stmt.execute(sql);
             stmt.close();
             // ResultSet rs = stmt.executeQuery(sql);
+            System.out.println("You are registered");
+
+        } catch (SQLException e) {
+            System.out.println("Unable to create customer account");
+            e.printStackTrace();
+        }
+
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select cust_id from customer where email = '" + email +"'";
+            
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            int id = rs.getInt("cust_id");
+            String sql2 = "insert into accounts (cust_id,account_status,balance) values ('" + id + "', 'no', '0')";
+            stmt.execute(sql2);
+            stmt.close();
             System.out.println("Your Account has been created. Go to Login.");
 
         } catch (SQLException e) {
@@ -133,5 +150,54 @@ public class CustomerDAO {
         }
 
     }
+    
+    // method to determine access level
+    public int accesslevel(String email, String password){
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select access_level from customer where email = '"+ email +"' and passcode = '"+ password +"'";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            int result = rs.getInt("access_level");
+            return result;
 
-}
+        } catch (SQLException e) {
+            System.out.println("Unable to Login");
+            // e.printStackTrace();
+            return 0;
+        }
+    }
+
+    // method to check account status
+    public boolean status(String email, String password){
+        try (Connection conn = ConnectionUtil.getConnection()) {
+            String sql = "select cust_id from customer where email = '" + email +"' and passcode = '" + password +"'";
+            
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            int id = rs.getInt("cust_id");
+            String sql2 = "select account_status from accounts where cust_id = '"+ id +"'";
+            ResultSet rs2 = stmt.executeQuery(sql2);
+            rs2.next();
+            String stat = rs2.getString("account_status");
+            stmt.close();
+
+            if(stat.equalsIgnoreCase("yes")){
+                return true;
+            }else{
+                return false;
+            }
+           
+        } catch (SQLException e) {
+            System.out.println("Unable to get access level");
+            //e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+    }
+
+
