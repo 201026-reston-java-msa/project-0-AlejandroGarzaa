@@ -50,11 +50,12 @@ public class TransactionsDAO {
             int accountbalance = rs2.getInt("balance");
 
             if (accountbalance > amount && amount > 0) {
-                accountbalance = accountbalance - amount;
-                String sql = "update accounts set balance = '" + accountbalance + "' where account_number = '"
+                int newaccountbalance = accountbalance - amount;
+                String sql = "update accounts set balance = '" + newaccountbalance + "' where account_number = '"
                         + accountnum + "'";
                 stmt.execute(sql);
-                System.out.println("*****"+ "\nAccount Number: "+ accountnum + "\nBalance: "+ accountbalance);
+                System.out.println("*****"+ "\nAccount Number: "+ accountnum + "\nPrevious Balance: "+ accountbalance);
+                System.out.println("*****"+ "\nAccount Number: "+ accountnum + "\nNew Balance: "+ newaccountbalance);
             } else {
                 System.out.println("unable to perform transaction");
             }
@@ -78,11 +79,12 @@ public class TransactionsDAO {
             int accountbalance = rs2.getInt("balance");
 
             if (amount > 0) {
-                accountbalance = accountbalance + amount;
-                String sql = "update accounts set balance = '" + accountbalance + "' where account_number = '"
+                int newaccountbalance = accountbalance + amount;
+                String sql = "update accounts set balance = '" + newaccountbalance + "' where account_number = '"
                         + accountnum + "'";
                 stmt.execute(sql);
-                System.out.println("*****"+ "\nAccount Number: "+ accountnum + "\nBalance: "+ accountbalance);
+                System.out.println("*****"+ "\nAccount Number: "+ accountnum + "\nPrevious Balance: "+ accountbalance);
+                System.out.println("*****"+ "\nAccount Number: "+ accountnum + "\nNew Balance: "+ newaccountbalance);
             } else {
                 System.out.println("unable to perform transaction");
             }
@@ -92,4 +94,43 @@ public class TransactionsDAO {
             // System.out.println("Unable to get balance");
         }
     }
-}
+
+    // transfer method 
+    public void transfer(int fromacct, int toacct, int amount){
+
+            try (Connection conn = ConnectionUtil.getConnection()) {
+    
+                String sql2 = "select balance from accounts where account_number = '" + fromacct + "'";
+                Statement stmt = conn.createStatement();
+                ResultSet rs2 = stmt.executeQuery(sql2);
+                rs2.next();
+    
+                int accountbalance = rs2.getInt("balance");
+    
+                if (accountbalance > amount && amount > 0) {
+                    int fromnewbalance = accountbalance - amount;
+                    String sql = "update accounts set balance = '" + fromnewbalance + "' where account_number = '"
+                            + fromacct + "'";
+                    stmt.execute(sql);
+                    System.out.println("*****"+ "\nAccount Number: "+ fromacct + "\nBalance: "+ fromnewbalance);
+
+                    String sql3 = "select balance from accounts where account_number = '" + toacct + "'";
+                    ResultSet rs3 = stmt.executeQuery(sql3);
+                    rs3.next();
+                    int tobalance = rs3.getInt("balance");
+                    int newtobalance = tobalance + amount;
+                    String sql4 = "update accounts set balance = '" + newtobalance + "' where account_number = '"
+                            + toacct + "'";
+                            stmt.execute(sql4);
+
+                } else {
+                    System.out.println("unable to perform transaction");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                // System.out.println("Unable to get balance");
+            }
+        }
+    }
+
