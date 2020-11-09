@@ -1,0 +1,4 @@
+2020-11-06 13:45:20 WARN  CustomerDAO:48 - Unable to retrieve employees from the db
+2020-11-06 13:50:47 WARN  CustomerDAO:48 - Unable to retrieve customers from the db
+2020-11-06 13:53:25 WARN  CustomerDAO:48 - Unable to retrieve customers from the db
+2020-11-06 13:57:42 WARN  CustomerDAO:48 - Unable to retrieve customers from the db
