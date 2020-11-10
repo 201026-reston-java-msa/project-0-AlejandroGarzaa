@@ -7,15 +7,15 @@ import org.apache.log4j.Logger;
 public class MenusDAO {
     private static Logger log = Logger.getLogger(MenusDAO.class);
     TransactionsDAO td = new TransactionsDAO();
+    ValidationDAO cd = new ValidationDAO();
 
     // Main menu method
     public void mainMenu() {
-        ValidationDAO cd = new ValidationDAO();
-
-        int initial;
+        
         String email;
         String password;
         Scanner scan1 = new Scanner(System.in);
+        
         try {
 
             System.out.println("------------------------");
@@ -25,7 +25,7 @@ public class MenusDAO {
             System.out.println("3. Exit");
             System.out.println("------------------------");
 
-            initial = scan1.nextInt();
+            int initial = scan1.nextInt();
 
             switch (initial) {
                 case 1:
@@ -86,12 +86,64 @@ public class MenusDAO {
                     break;
 
             }
+        
 
         } catch (InputMismatchException e) {
             log.error("InputMismatch Stack Trace: ", e);
         }
 
     }
+    // case 1 for main menu
+    // public void case1(){
+    //     String password;
+    //     String email;
+    //     Scanner scan1 = new Scanner(System.in);
+
+    //     System.out.println("Login");
+    //     System.out.println("------------------------");
+    //     System.out.println("Enter Username(email): ");
+    //     scan1.nextLine();
+    //     email = scan1.nextLine();
+    //     if (cd.usercheck(email) == true) {
+    //         do {
+    //             System.out.println("------------------------");
+    //             System.out.println("Enter password: ");
+    //             password = scan1.nextLine();
+    //             if (cd.passcheck(email, password) == true) {
+    //                 System.out.println("Access Granted");
+    //                 /// return access level
+    //                 if (cd.accesslevel(email, password) == 1) {
+    //                     System.out.println("Customer");
+    //                     if (cd.status(email, password) == true) {
+    //                         System.out.println("account active");
+    //                         custMenu(email, password);
+
+    //                     } else {
+    //                         System.out.println("Account pending approval, check back later.");
+    //                     }
+
+    //                 }
+    //                 if (cd.accesslevel(email, password) == 2) {
+    //                     System.out.println("Employee");
+    //                     empMenu();
+
+    //                 }
+    //                 if (cd.accesslevel(email, password) == 3) {
+    //                     System.out.println("Admin");
+    //                     adminMenu();
+
+    //                 }
+
+    //             } else {
+    //                 System.out.println("incorrect password");
+    //             }
+    //         } while (cd.passcheck(email, password) != true);
+    //     } else {
+    //         System.out.println("No username found");
+    //     }
+    //     scan1.close();
+
+    // }
 
     // customer menu
     public void custMenu(String email, String password) {
