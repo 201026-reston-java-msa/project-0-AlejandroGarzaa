@@ -93,3 +93,6 @@
 2020-11-09 17:04:53 INFO  ConnectionUtil:33 - successfull connection
 2020-11-09 17:04:53 INFO  ConnectionUtil:33 - successfull connection
 2020-11-10 00:39:24 WARN  ValidationDAO:140 - Unable to verify user login
+2020-11-10 15:09:19 INFO  MenusDAO:85 - user has exited app
+2020-11-10 15:11:48 INFO  MenusDAO:85 - user has exited app
+2020-11-10 15:12:03 INFO  MenusDAO:85 - user has exited app

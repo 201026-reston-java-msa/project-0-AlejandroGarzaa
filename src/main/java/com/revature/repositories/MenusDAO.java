@@ -82,6 +82,7 @@ public class MenusDAO {
                 case 3:
                     System.out.println("------------------------");
                     System.out.println("Thank you for banking with us!");
+                    log.info("user has exited app");
                     scan1.close();
                     break;
 
