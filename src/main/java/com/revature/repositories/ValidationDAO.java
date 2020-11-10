@@ -10,11 +10,11 @@ import com.revature.util.ConnectionUtil;
 
 import org.apache.log4j.Logger;
 
-// implementation for customer methods
-public class CustomerDAO {
-    private static Logger log = Logger.getLogger(CustomerDAO.class);
+// implementation for customer methods 
+public class ValidationDAO {
+    private static Logger log = Logger.getLogger(ValidationDAO.class);
 
-    // method to find all customers in database
+    // method to find all customers in database (transaction)
     public void findAll() {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
@@ -34,8 +34,8 @@ public class CustomerDAO {
                 int balance = rs.getInt("balance");
 
                 // Customer c = new Customer(id, first_name, last_name, email, phone);
-                System.out.println("**********" + "\nId: " + id + "\nFirst Name: " + firstname + "\nLast Name: " + lastname
-                        + "\nEmail: " + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum
+                System.out.println("**********" + "\nId: " + id + "\nFirst Name: " + firstname + "\nLast Name: "
+                        + lastname + "\nEmail: " + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum
                         + "\nAccount active: " + status + "\nBalance: $" + balance);
             }
             rs.close();
@@ -46,7 +46,7 @@ public class CustomerDAO {
 
     }
 
-    // mthod to regiter customer
+    // mthod to regiter customer (validation)
     public void register() {
 
         String pass;
@@ -112,9 +112,8 @@ public class CustomerDAO {
 
     }
 
-    // method to check username
+    // method to check username (validation)
     public boolean usercheck(String email) {
-        
 
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select email from customer where email = '" + email + "'";
@@ -122,7 +121,7 @@ public class CustomerDAO {
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
             rs.getString("email");
-            
+
             return true;
 
         } catch (SQLException e) {
@@ -130,12 +129,10 @@ public class CustomerDAO {
             // e.printStackTrace();
             return false;
         }
-        
-        
 
     }
 
-    // method to validate password
+    // method to validate password (validation)
     public boolean passcheck(String email, String password) {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
@@ -158,7 +155,7 @@ public class CustomerDAO {
 
     }
 
-    // method to determine access level
+    // method to determine access level (validation)
     public int accesslevel(String email, String password) {
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select access_level from customer where email = '" + email + "' and passcode = '" + password
@@ -176,9 +173,9 @@ public class CustomerDAO {
         }
     }
 
-    // method to check account status
+    // method to check account status (validation)
     public boolean status(String email, String password) {
-        
+
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
 
@@ -189,69 +186,15 @@ public class CustomerDAO {
             String sql2 = "select account_status from accounts where cust_id = '" + id + "' and account_status = 'yes'";
             ResultSet rs2 = stmt.executeQuery(sql2);
             rs2.next();
-            rs2.getString("account_status"); 
+            rs2.getString("account_status");
             return true;
 
-            }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Account approval pending");
             // e.printStackTrace();
             return false;
         }
-        
-    }
-
-    // method to approve account
-    public void approveacct(int acctnum, String activate){
-        try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "update accounts set account_status = '"+ activate +"' where account_number = '"+ acctnum +"'";
-
-            Statement stmt = conn.createStatement();
-            stmt.execute(sql);
-            System.out.println("Account number "+ acctnum + " has been activated.");
-
-        } catch (SQLException e) {
-            System.out.println("Unable to get access level");
-             e.printStackTrace();
-        
-        }
-    }
-    // cancel account
-    public void cancelacct(int acctnumb){
-        try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "delete from accounts where account_number = '"+ acctnumb +"'";
-
-            Statement stmt = conn.createStatement();
-            stmt.execute(sql);
-            System.out.println("Account number "+ acctnumb + " has been closed.");
-
-        } catch (SQLException e) {
-            System.out.println("Unable to close account.");
-             e.printStackTrace();
-        
-        }
 
     }
 
-    // apply for account
-    public void apply(String email, String password){
-
-        try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
-            int id = rs.getInt("cust_id");
-            String sql2 = "insert into accounts (cust_id,account_status,balance) values ('" + id + "', 'no', '0')";
-            stmt.execute(sql2);
-            stmt.close();
-            System.out.println("Your account is pending approval.");
-
-        } catch (SQLException e) {
-            System.out.println("Unable to create customer account");
-            e.printStackTrace();
-        }
-    }
-
-    }
-
-
+}
