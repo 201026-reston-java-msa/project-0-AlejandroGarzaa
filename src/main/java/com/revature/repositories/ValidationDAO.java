@@ -16,7 +16,7 @@ public class ValidationDAO {
     private static Logger log = Logger.getLogger(ValidationDAO.class);
 
     // method to find all customers in database (transaction)
-    public void findAll() {
+    public boolean findAll() {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select customer.cust_id, customer.first_name, customer.last_name, customer.email, customer.phone, accounts.account_number, accounts.account_status, accounts.balance from customer right join accounts on customer.cust_id = accounts.cust_id order by customer.cust_id;";
@@ -41,9 +41,11 @@ public class ValidationDAO {
                         + "\nBalance: $" + balance);
             }
             rs.close();
+            return true;
 
         } catch (SQLException e) {
             log.warn("Unable to retrieve customers from the db");
+            return false;
         }
 
     }

@@ -3,6 +3,7 @@ package com.revature.repositories;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
+import org.postgresql.util.PSQLException;
 
 public class MenusDAO {
     private static Logger log = Logger.getLogger(MenusDAO.class);
@@ -10,12 +11,12 @@ public class MenusDAO {
     ValidationDAO cd = new ValidationDAO();
 
     // Main menu method
-    public void mainMenu() {
-        
+    public void mainMenu() throws PSQLException {
+
         String email;
         String password;
         Scanner scan1 = new Scanner(System.in);
-        
+
         try {
 
             System.out.println("------------------------");
@@ -87,7 +88,6 @@ public class MenusDAO {
                     break;
 
             }
-        
 
         } catch (InputMismatchException e) {
             log.error("InputMismatch Stack Trace: ", e);
@@ -96,58 +96,58 @@ public class MenusDAO {
     }
     // case 1 for main menu
     // public void case1(){
-    //     String password;
-    //     String email;
-    //     Scanner scan1 = new Scanner(System.in);
+    // String password;
+    // String email;
+    // Scanner scan1 = new Scanner(System.in);
 
-    //     System.out.println("Login");
-    //     System.out.println("------------------------");
-    //     System.out.println("Enter Username(email): ");
-    //     scan1.nextLine();
-    //     email = scan1.nextLine();
-    //     if (cd.usercheck(email) == true) {
-    //         do {
-    //             System.out.println("------------------------");
-    //             System.out.println("Enter password: ");
-    //             password = scan1.nextLine();
-    //             if (cd.passcheck(email, password) == true) {
-    //                 System.out.println("Access Granted");
-    //                 /// return access level
-    //                 if (cd.accesslevel(email, password) == 1) {
-    //                     System.out.println("Customer");
-    //                     if (cd.status(email, password) == true) {
-    //                         System.out.println("account active");
-    //                         custMenu(email, password);
+    // System.out.println("Login");
+    // System.out.println("------------------------");
+    // System.out.println("Enter Username(email): ");
+    // scan1.nextLine();
+    // email = scan1.nextLine();
+    // if (cd.usercheck(email) == true) {
+    // do {
+    // System.out.println("------------------------");
+    // System.out.println("Enter password: ");
+    // password = scan1.nextLine();
+    // if (cd.passcheck(email, password) == true) {
+    // System.out.println("Access Granted");
+    // /// return access level
+    // if (cd.accesslevel(email, password) == 1) {
+    // System.out.println("Customer");
+    // if (cd.status(email, password) == true) {
+    // System.out.println("account active");
+    // custMenu(email, password);
 
-    //                     } else {
-    //                         System.out.println("Account pending approval, check back later.");
-    //                     }
+    // } else {
+    // System.out.println("Account pending approval, check back later.");
+    // }
 
-    //                 }
-    //                 if (cd.accesslevel(email, password) == 2) {
-    //                     System.out.println("Employee");
-    //                     empMenu();
+    // }
+    // if (cd.accesslevel(email, password) == 2) {
+    // System.out.println("Employee");
+    // empMenu();
 
-    //                 }
-    //                 if (cd.accesslevel(email, password) == 3) {
-    //                     System.out.println("Admin");
-    //                     adminMenu();
+    // }
+    // if (cd.accesslevel(email, password) == 3) {
+    // System.out.println("Admin");
+    // adminMenu();
 
-    //                 }
+    // }
 
-    //             } else {
-    //                 System.out.println("incorrect password");
-    //             }
-    //         } while (cd.passcheck(email, password) != true);
-    //     } else {
-    //         System.out.println("No username found");
-    //     }
-    //     scan1.close();
+    // } else {
+    // System.out.println("incorrect password");
+    // }
+    // } while (cd.passcheck(email, password) != true);
+    // } else {
+    // System.out.println("No username found");
+    // }
+    // scan1.close();
 
     // }
 
     // customer menu
-    public void custMenu(String email, String password) {
+    public void custMenu(String email, String password) throws PSQLException {
         int select;
 
         do {

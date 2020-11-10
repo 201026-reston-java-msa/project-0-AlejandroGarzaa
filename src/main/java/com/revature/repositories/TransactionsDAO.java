@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.apache.log4j.Logger;
+import org.postgresql.util.PSQLException;
 
 import com.revature.util.ConnectionUtil;
 
@@ -12,7 +13,7 @@ public class TransactionsDAO {
     private static Logger log = Logger.getLogger(TransactionsDAO.class);
 
     // check balance method
-    public void balance(String email, String password) {
+    public void balance(String email, String password) throws PSQLException {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
@@ -34,6 +35,7 @@ public class TransactionsDAO {
             stmt.close();
 
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("Unable to get balance");
             log.warn("Unable to get balance");
         }
