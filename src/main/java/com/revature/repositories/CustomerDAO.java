@@ -216,13 +216,13 @@ public class CustomerDAO {
         }
     }
     // cancel account
-    public void cancelacct(int acctnum){
+    public void cancelacct(int acctnumb){
         try (Connection conn = ConnectionUtil.getConnection()) {
-            String sql = "delete from accounts where account_number = '"+ acctnum +"'";
+            String sql = "delete from accounts where account_number = '"+ acctnumb +"'";
 
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
-            System.out.println("Account number "+ acctnum + " has been closed.");
+            System.out.println("Account number "+ acctnumb + " has been closed.");
 
         } catch (SQLException e) {
             System.out.println("Unable to close account.");

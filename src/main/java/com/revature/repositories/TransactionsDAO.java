@@ -155,8 +155,8 @@ public class TransactionsDAO {
         }
     }
 
-        // employee menu
-        public void empmenu(String email, String password){
+        // customer menu
+        public void custMenu(String email, String password){
             int select;
 
             do{
@@ -213,10 +213,163 @@ public class TransactionsDAO {
 
                 case 6:
                 menuscan.close();
-                System.out.println("Bye");
+                break;
+                //System.out.println("Bye");
 
             }
         }while(select != 6);
     }
+
+    // employee menu
+
+            // employee menu
+            public void empMenu(){
+                CustomerDAO cd2 = new CustomerDAO();
+
+                int select;
+    
+                do{
+                    System.out.println("Choose an option: ");
+                    System.out.println("1. View all accounts");
+                    System.out.println("2. Withdraw");
+                    System.out.println("3. Deposit");
+                    System.out.println("4. Transfer");
+                    System.out.println("5. Approve account");
+                    System.out.println("6. Exit");
+        
+                    Scanner menuscan = new Scanner(System.in);
+                    select = menuscan.nextInt();
+                
+    
+                switch(select){
+                    case 1:
+                    cd2.findAll();
+                    break;
+    
+                    case 2:
+                    System.out.println("Withdraw from account #: ");
+                    int accountnum = menuscan.nextInt();
+                    System.out.println("Withdraw Amount: ");
+                    menuscan.nextLine();
+                    int amount = menuscan.nextInt();
+                    withdraw(accountnum, amount);
+                    break;
+    
+                    case 3:
+                    System.out.println("Deposit to account #: ");
+                    int daccountnum = menuscan.nextInt();
+                    System.out.println("Deposit amount: ");
+                    int damount = menuscan.nextInt();
+                    deposit(daccountnum, damount);
+                    break;
+    
+                    case 4:
+                    System.out.println("From account #: ");
+                    int fromacct = menuscan.nextInt();
+    
+                    System.out.println("To account #: ");
+                    int toacct = menuscan.nextInt();
+    
+                    System.out.println("Amount to transfer: ");
+                    int tamount = menuscan.nextInt();
+    
+                    transfer(fromacct, toacct, tamount);
+                    break;
+    
+                    case 5:
+                    System.out.println("Approve account #: ");
+                    int acctnum = menuscan.nextInt();
+                    String activate = "yes";
+                    cd2.approveacct(acctnum, activate);
+                    System.out.println("You have approved account #: "+ acctnum);
+                    break;
+    
+                    case 6:
+                    menuscan.close();
+                    break;
+                    //System.out.println("Bye");
+    
+                }
+            }while(select != 6);
+        }
+
+        // admin menu
+        public void adminMenu(){
+            CustomerDAO cd2 = new CustomerDAO();
+
+            int select;
+
+            do{
+                System.out.println("Choose an option: ");
+                System.out.println("1. View all accounts");
+                System.out.println("2. Withdraw");
+                System.out.println("3. Deposit");
+                System.out.println("4. Transfer");
+                System.out.println("5. Approve account");
+                System.out.println("6. Close account");
+                System.out.println("7. Exit");
+    
+                Scanner menuscan = new Scanner(System.in);
+                select = menuscan.nextInt();
+            
+
+            switch(select){
+                case 1:
+                cd2.findAll();
+                break;
+
+                case 2:
+                System.out.println("Withdraw from account #: ");
+                int accountnum = menuscan.nextInt();
+                System.out.println("Withdraw Amount: ");
+                menuscan.nextLine();
+                int amount = menuscan.nextInt();
+                withdraw(accountnum, amount);
+                break;
+
+                case 3:
+                System.out.println("Deposit to account #: ");
+                int daccountnum = menuscan.nextInt();
+                System.out.println("Deposit amount: ");
+                int damount = menuscan.nextInt();
+                deposit(daccountnum, damount);
+                break;
+
+                case 4:
+                System.out.println("From account #: ");
+                int fromacct = menuscan.nextInt();
+
+                System.out.println("To account #: ");
+                int toacct = menuscan.nextInt();
+
+                System.out.println("Amount to transfer: ");
+                int tamount = menuscan.nextInt();
+
+                transfer(fromacct, toacct, tamount);
+                break;
+
+                case 5:
+                System.out.println("Approve account #: ");
+                int acctnum = menuscan.nextInt();
+                String activate = "yes";
+                cd2.approveacct(acctnum, activate);
+                System.out.println("You have approved account #: "+ acctnum);
+                break;
+
+                case 6:
+                System.out.println("Close account #: ");
+                int acctnumb = menuscan.nextInt();
+                cd2.cancelacct(acctnumb);
+                break;
+
+                case 7:
+                menuscan.close();
+                break;
+                //System.out.println("Bye");
+
+            }
+        }while(select != 7);
+    }
+
 }
 
