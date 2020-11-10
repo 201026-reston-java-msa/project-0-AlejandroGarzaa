@@ -1,8 +1,11 @@
 package com.revature.repositories;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import org.apache.log4j.Logger;
 
 public class MenusDAO {
+    private static Logger log = Logger.getLogger(MenusDAO.class);
     TransactionsDAO td = new TransactionsDAO();
 
     // Main menu method
@@ -13,73 +16,79 @@ public class MenusDAO {
         String email;
         String password;
         Scanner scan1 = new Scanner(System.in);
+        try {
 
-        System.out.println("------------------------");
-        System.out.println("Welcome to banking app");
-        System.out.println("1. Login");
-        System.out.println("2. Create account");
-        System.out.println("3. Exit");
-        System.out.println("------------------------");
+            System.out.println("------------------------");
+            System.out.println("Welcome to banking app");
+            System.out.println("1. Login");
+            System.out.println("2. Create account");
+            System.out.println("3. Exit");
+            System.out.println("------------------------");
 
-        initial = scan1.nextInt();
+            initial = scan1.nextInt();
 
-        switch (initial) {
-            case 1:
-                System.out.println("Login");
-                System.out.println("------------------------");
-                System.out.println("Enter Username(email): ");
-                scan1.nextLine();
-                email = scan1.nextLine();
-                if (cd.usercheck(email) == true) {
-                    do {
-                        System.out.println("------------------------");
-                        System.out.println("Enter password: ");
-                        password = scan1.nextLine();
-                        if (cd.passcheck(email, password) == true) {
-                            System.out.println("Access Granted");
-                            /// return access level
-                            if (cd.accesslevel(email, password) == 1) {
-                                System.out.println("Customer");
-                                if (cd.status(email, password) == true) {
-                                    System.out.println("account active");
-                                    custMenu(email, password);
+            switch (initial) {
+                case 1:
+                    System.out.println("Login");
+                    System.out.println("------------------------");
+                    System.out.println("Enter Username(email): ");
+                    scan1.nextLine();
+                    email = scan1.nextLine();
+                    if (cd.usercheck(email) == true) {
+                        do {
+                            System.out.println("------------------------");
+                            System.out.println("Enter password: ");
+                            password = scan1.nextLine();
+                            if (cd.passcheck(email, password) == true) {
+                                System.out.println("Access Granted");
+                                /// return access level
+                                if (cd.accesslevel(email, password) == 1) {
+                                    System.out.println("Customer");
+                                    if (cd.status(email, password) == true) {
+                                        System.out.println("account active");
+                                        custMenu(email, password);
 
-                                } else {
-                                    System.out.println("Account pending approval, check back later.");
+                                    } else {
+                                        System.out.println("Account pending approval, check back later.");
+                                    }
+
+                                }
+                                if (cd.accesslevel(email, password) == 2) {
+                                    System.out.println("Employee");
+                                    empMenu();
+
+                                }
+                                if (cd.accesslevel(email, password) == 3) {
+                                    System.out.println("Admin");
+                                    adminMenu();
+
                                 }
 
+                            } else {
+                                System.out.println("incorrect password");
                             }
-                            if (cd.accesslevel(email, password) == 2) {
-                                System.out.println("Employee");
-                                empMenu();
+                        } while (cd.passcheck(email, password) != true);
+                    } else {
+                        System.out.println("No username found");
+                    }
+                    break;
 
-                            }
-                            if (cd.accesslevel(email, password) == 3) {
-                                System.out.println("Admin");
-                                adminMenu();
+                case 2:
+                    System.out.println("------------------------");
+                    System.out.println("Create account");
+                    cd.register();
+                    break;
 
-                            }
+                case 3:
+                    System.out.println("------------------------");
+                    System.out.println("Thank you for banking with us!");
+                    scan1.close();
+                    break;
 
-                        } else {
-                            System.out.println("incorrect password");
-                        }
-                    } while (cd.passcheck(email, password) != true);
-                } else {
-                    System.out.println("No username found");
-                }
-                break;
+            }
 
-            case 2:
-                System.out.println("------------------------");
-                System.out.println("Create account");
-                cd.register();
-                break;
-
-            case 3:
-                System.out.println("------------------------");
-                System.out.println("Thank you for banking with us!");
-                scan1.close();
-                break;
+        } catch (InputMismatchException e) {
+            log.error("InputMismatch Stack Trace: ", e);
         }
 
     }
@@ -147,8 +156,8 @@ public class MenusDAO {
 
                 case 6:
                     menuscan.close();
+                    System.out.println("Thank you for banking with us!");
                     break;
-                // System.out.println("Bye");
 
             }
         } while (select != 6);
@@ -190,7 +199,7 @@ public class MenusDAO {
                     break;
 
                 case 3:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("Deposit to account #: ");
                     int daccountnum = menuscan.nextInt();
                     System.out.println("------------------------");
@@ -200,7 +209,7 @@ public class MenusDAO {
                     break;
 
                 case 4:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("From account #: ");
                     int fromacct = menuscan.nextInt();
                     System.out.println("------------------------");
@@ -214,7 +223,7 @@ public class MenusDAO {
                     break;
 
                 case 5:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("Approve account #: ");
                     int acctnum = menuscan.nextInt();
                     String activate = "yes";
@@ -225,8 +234,8 @@ public class MenusDAO {
 
                 case 6:
                     menuscan.close();
+                    System.out.println("Thank you for banking with us!");
                     break;
-                // System.out.println("Bye");
 
             }
         } while (select != 6);
@@ -258,7 +267,7 @@ public class MenusDAO {
                     break;
 
                 case 2:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("Withdraw from account #: ");
                     int accountnum = menuscan.nextInt();
                     System.out.println("------------------------");
@@ -269,7 +278,7 @@ public class MenusDAO {
                     break;
 
                 case 3:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("Deposit to account #: ");
                     int daccountnum = menuscan.nextInt();
                     System.out.println("------------------------");
@@ -279,7 +288,7 @@ public class MenusDAO {
                     break;
 
                 case 4:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("From account #: ");
                     int fromacct = menuscan.nextInt();
                     System.out.println("------------------------");
@@ -293,7 +302,7 @@ public class MenusDAO {
                     break;
 
                 case 5:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("Approve account #: ");
                     int acctnum = menuscan.nextInt();
                     String activate = "yes";
@@ -303,7 +312,7 @@ public class MenusDAO {
                     break;
 
                 case 6:
-                System.out.println("------------------------");
+                    System.out.println("------------------------");
                     System.out.println("Close account #: ");
                     int acctnumb = menuscan.nextInt();
                     td.cancelacct(acctnumb);
@@ -311,8 +320,8 @@ public class MenusDAO {
 
                 case 7:
                     menuscan.close();
+                    System.out.println("Thank you for banking with us!");
                     break;
-                // System.out.println("Bye");
 
             }
         } while (select != 7);

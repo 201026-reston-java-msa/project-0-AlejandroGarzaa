@@ -36,9 +36,9 @@ public class ValidationDAO {
 
                 // Customer c = new Customer(id, first_name, last_name, email, phone);
                 System.out.println("------------------------");
-                System.out.println("Id: " + id + "\nFirst Name: " + firstname + "\nLast Name: "
-                        + lastname + "\nEmail: " + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum
-                        + "\nAccount active: " + status + "\nBalance: $" + balance);
+                System.out.println("Id: " + id + "\nFirst Name: " + firstname + "\nLast Name: " + lastname + "\nEmail: "
+                        + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum + "\nAccount active: " + status
+                        + "\nBalance: $" + balance);
             }
             rs.close();
 
@@ -57,7 +57,7 @@ public class ValidationDAO {
 
         Scanner reg = new Scanner(System.in);
 
-System.out.println("------------------------");
+        System.out.println("------------------------");
         System.out.println("Enter First Name: ");
         String fname = reg.nextLine();
         System.out.println("------------------------");
@@ -80,7 +80,7 @@ System.out.println("------------------------");
             conpass = reg.nextLine();
 
             if (!pass.equals(conpass)) {
-    
+
                 System.out.println("Passwords did not match please redo");
             }
         } while (!pass.equals(conpass));
@@ -100,7 +100,7 @@ System.out.println("------------------------");
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
             log.warn("Unable to create customer account");
-            
+
         }
 
         try (Connection conn = ConnectionUtil.getConnection()) {
@@ -118,7 +118,7 @@ System.out.println("------------------------");
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
             log.warn("Unable to create customer account");
-            
+
         }
 
     }
@@ -138,7 +138,7 @@ System.out.println("------------------------");
         } catch (SQLException e) {
             System.out.println("Unable to Login");
             log.warn("Unable to verify user login");
-            
+
             return false;
         }
 
@@ -162,7 +162,7 @@ System.out.println("------------------------");
         } catch (SQLException e) {
             System.out.println("Unable to Login");
             log.warn("Unable to verify password");
-            
+
             return false;
         }
 
@@ -205,7 +205,7 @@ System.out.println("------------------------");
         } catch (SQLException e) {
             System.out.println("Account approval pending");
             log.warn("status of account not active ");
-            
+
             return false;
         }
 

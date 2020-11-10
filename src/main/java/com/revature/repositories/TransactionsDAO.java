@@ -59,10 +59,9 @@ public class TransactionsDAO {
                         + accountnum + "' and account_status = 'yes'";
                 stmt.execute(sql);
                 System.out.println("------------------------");
-                System.out
-                        .println("Account Number: " + accountnum + "\nPrevious Balance: " + accountbalance);
+                System.out.println("Account Number: " + accountnum + "\nPrevious Balance: " + accountbalance);
 
-                        System.out.println("------------------------");
+                System.out.println("------------------------");
                 System.out.println("Account Number: " + accountnum + "\nNew Balance: " + newaccountbalance);
             } else {
                 System.out.println("------------------------");
@@ -94,11 +93,9 @@ public class TransactionsDAO {
                         + daccountnum + "' and account_status = 'yes'";
                 stmt.execute(sql);
                 System.out.println("------------------------");
-                System.out.println(
-                        "Account Number: " + daccountnum + "\nPrevious Balance: " + accountbalance);
-                        System.out.println("------------------------");
-                System.out
-                        .println("Account Number: " + daccountnum + "\nNew Balance: " + newaccountbalance);
+                System.out.println("Account Number: " + daccountnum + "\nPrevious Balance: " + accountbalance);
+                System.out.println("------------------------");
+                System.out.println("Account Number: " + daccountnum + "\nNew Balance: " + newaccountbalance);
             } else {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
@@ -147,7 +144,7 @@ public class TransactionsDAO {
             }
 
         } catch (SQLException e) {
-          
+
             System.out.println("Unable to access account");
             log.warn("Unable to make transfer");
         }
