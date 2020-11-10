@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.apache.log4j.Logger;
 
 import com.revature.util.ConnectionUtil;
 
 public class TransactionsDAO {
+    private static Logger log = Logger.getLogger(TransactionsDAO.class);
 
     // check balance method
     public void balance(String email, String password) {
@@ -26,14 +28,14 @@ public class TransactionsDAO {
 
                 int accountnum = rs2.getInt("account_number");
                 int accountbalance = rs2.getInt("balance");
-
-                System.out.println(
-                        "*****" + "\nId: " + id + "\nAccount Number: " + accountnum + "\nBalance: $" + accountbalance);
+                System.out.println("------------------------");
+                System.out.println("Id: " + id + "\nAccount Number: " + accountnum + "\nBalance: $" + accountbalance);
             }
             stmt.close();
 
         } catch (SQLException e) {
             System.out.println("Unable to get balance");
+            log.warn("Unable to get balance");
         }
     }
 
@@ -56,17 +58,20 @@ public class TransactionsDAO {
                 String sql = "update accounts set balance = '" + newaccountbalance + "' where account_number = '"
                         + accountnum + "' and account_status = 'yes'";
                 stmt.execute(sql);
+                System.out.println("------------------------");
                 System.out
-                        .println("*****" + "\nAccount Number: " + accountnum + "\nPrevious Balance: " + accountbalance);
-                System.out.println("*****" + "\nAccount Number: " + accountnum + "\nNew Balance: " + newaccountbalance);
+                        .println("Account Number: " + accountnum + "\nPrevious Balance: " + accountbalance);
+
+                        System.out.println("------------------------");
+                System.out.println("Account Number: " + accountnum + "\nNew Balance: " + newaccountbalance);
             } else {
+                System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
             }
 
         } catch (SQLException e) {
-
-            // e.printStackTrace();
             System.out.println("Unable to access account");
+            log.warn("Unable to withdraw");
         }
     }
 
@@ -88,17 +93,20 @@ public class TransactionsDAO {
                 String sql = "update accounts set balance = '" + newaccountbalance + "' where account_number = '"
                         + daccountnum + "' and account_status = 'yes'";
                 stmt.execute(sql);
+                System.out.println("------------------------");
                 System.out.println(
-                        "*****" + "\nAccount Number: " + daccountnum + "\nPrevious Balance: " + accountbalance);
+                        "Account Number: " + daccountnum + "\nPrevious Balance: " + accountbalance);
+                        System.out.println("------------------------");
                 System.out
-                        .println("*****" + "\nAccount Number: " + daccountnum + "\nNew Balance: " + newaccountbalance);
+                        .println("Account Number: " + daccountnum + "\nNew Balance: " + newaccountbalance);
             } else {
+                System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
             }
 
         } catch (SQLException e) {
-            // e.printStackTrace();
             System.out.println("Unable to access account");
+            log.warn("Unable to make deposit");
         }
     }
 
@@ -120,7 +128,8 @@ public class TransactionsDAO {
                 String sql = "update accounts set balance = '" + fromnewbalance + "' where account_number = '"
                         + fromacct + "' and account_status = 'yes'";
                 stmt.execute(sql);
-                System.out.println("*****" + "\nAccount Number: " + fromacct + "\nBalance: " + fromnewbalance);
+                System.out.println("------------------------");
+                System.out.println("Account Number: " + fromacct + "\nBalance: " + fromnewbalance);
 
                 String sql3 = "select balance from accounts where account_number = '" + toacct
                         + "' and account_status = 'yes'";
@@ -133,12 +142,14 @@ public class TransactionsDAO {
                 stmt.execute(sql4);
 
             } else {
+                System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
             }
 
         } catch (SQLException e) {
-            // e.printStackTrace();
+          
             System.out.println("Unable to access account");
+            log.warn("Unable to make transfer");
         }
     }
 
@@ -154,11 +165,12 @@ public class TransactionsDAO {
             String sql2 = "insert into accounts (cust_id,account_status,balance) values ('" + id + "', 'no', '0')";
             stmt.execute(sql2);
             stmt.close();
+            System.out.println("------------------------");
             System.out.println("Your account is pending approval.");
 
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
-            e.printStackTrace();
+            log.warn("Unable execute apply method");
         }
     }
 
@@ -170,11 +182,12 @@ public class TransactionsDAO {
 
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
+            System.out.println("------------------------");
             System.out.println("Account number " + acctnum + " has been activated.");
 
         } catch (SQLException e) {
-            System.out.println("Unable to get access level");
-            e.printStackTrace();
+            System.out.println("Unable to approve account");
+            log.warn("Unable to execute approve method");
 
         }
     }
@@ -186,11 +199,12 @@ public class TransactionsDAO {
 
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
+            System.out.println("------------------------");
             System.out.println("Account number " + acctnumb + " has been closed.");
 
         } catch (SQLException e) {
             System.out.println("Unable to close account.");
-            e.printStackTrace();
+            log.warn("Unable to close account");
 
         }
 

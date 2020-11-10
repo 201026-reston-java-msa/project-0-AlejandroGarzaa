@@ -26,11 +26,13 @@ public class MenusDAO {
         switch (initial) {
             case 1:
                 System.out.println("Login");
+                System.out.println("------------------------");
                 System.out.println("Enter Username(email): ");
                 scan1.nextLine();
                 email = scan1.nextLine();
                 if (cd.usercheck(email) == true) {
                     do {
+                        System.out.println("------------------------");
                         System.out.println("Enter password: ");
                         password = scan1.nextLine();
                         if (cd.passcheck(email, password) == true) {
@@ -68,17 +70,15 @@ public class MenusDAO {
                 break;
 
             case 2:
+                System.out.println("------------------------");
                 System.out.println("Create account");
                 cd.register();
                 break;
 
             case 3:
+                System.out.println("------------------------");
                 System.out.println("Thank you for banking with us!");
                 scan1.close();
-                break;
-
-            default:
-                System.out.println("Invalid option");
                 break;
         }
 
@@ -89,6 +89,7 @@ public class MenusDAO {
         int select;
 
         do {
+            System.out.println("------------------------");
             System.out.println("Choose an option: ");
             System.out.println("1. Check balance");
             System.out.println("2. Withdraw");
@@ -106,8 +107,10 @@ public class MenusDAO {
                     break;
 
                 case 2:
+                    System.out.println("------------------------");
                     System.out.println("Withdraw from account #: ");
                     int accountnum = menuscan.nextInt();
+                    System.out.println("------------------------");
                     System.out.println("Withdraw Amount: ");
                     menuscan.nextLine();
                     int amount = menuscan.nextInt();
@@ -115,20 +118,23 @@ public class MenusDAO {
                     break;
 
                 case 3:
+                    System.out.println("------------------------");
                     System.out.println("Deposit to account #: ");
                     int daccountnum = menuscan.nextInt();
+                    System.out.println("------------------------");
                     System.out.println("Deposit amount: ");
                     int damount = menuscan.nextInt();
                     td.deposit(daccountnum, damount);
                     break;
 
                 case 4:
+                    System.out.println("------------------------");
                     System.out.println("From account #: ");
                     int fromacct = menuscan.nextInt();
-
+                    System.out.println("------------------------");
                     System.out.println("To account #: ");
                     int toacct = menuscan.nextInt();
-
+                    System.out.println("------------------------");
                     System.out.println("Amount to transfer: ");
                     int tamount = menuscan.nextInt();
 
@@ -155,6 +161,7 @@ public class MenusDAO {
         int select;
 
         do {
+            System.out.println("------------------------");
             System.out.println("Choose an option: ");
             System.out.println("1. View all accounts");
             System.out.println("2. Withdraw");
@@ -172,8 +179,10 @@ public class MenusDAO {
                     break;
 
                 case 2:
+                    System.out.println("------------------------");
                     System.out.println("Withdraw from account #: ");
                     int accountnum = menuscan.nextInt();
+                    System.out.println("------------------------");
                     System.out.println("Withdraw Amount: ");
                     menuscan.nextLine();
                     int amount = menuscan.nextInt();
@@ -181,20 +190,23 @@ public class MenusDAO {
                     break;
 
                 case 3:
+                System.out.println("------------------------");
                     System.out.println("Deposit to account #: ");
                     int daccountnum = menuscan.nextInt();
+                    System.out.println("------------------------");
                     System.out.println("Deposit amount: ");
                     int damount = menuscan.nextInt();
                     td.deposit(daccountnum, damount);
                     break;
 
                 case 4:
+                System.out.println("------------------------");
                     System.out.println("From account #: ");
                     int fromacct = menuscan.nextInt();
-
+                    System.out.println("------------------------");
                     System.out.println("To account #: ");
                     int toacct = menuscan.nextInt();
-
+                    System.out.println("------------------------");
                     System.out.println("Amount to transfer: ");
                     int tamount = menuscan.nextInt();
 
@@ -202,10 +214,12 @@ public class MenusDAO {
                     break;
 
                 case 5:
+                System.out.println("------------------------");
                     System.out.println("Approve account #: ");
                     int acctnum = menuscan.nextInt();
                     String activate = "yes";
                     td.approveacct(acctnum, activate);
+                    System.out.println("------------------------");
                     System.out.println("You have approved account #: " + acctnum);
                     break;
 
@@ -225,6 +239,7 @@ public class MenusDAO {
         int select;
 
         do {
+            System.out.println("------------------------");
             System.out.println("Choose an option: ");
             System.out.println("1. View all accounts");
             System.out.println("2. Withdraw");
@@ -243,8 +258,10 @@ public class MenusDAO {
                     break;
 
                 case 2:
+                System.out.println("------------------------");
                     System.out.println("Withdraw from account #: ");
                     int accountnum = menuscan.nextInt();
+                    System.out.println("------------------------");
                     System.out.println("Withdraw Amount: ");
                     menuscan.nextLine();
                     int amount = menuscan.nextInt();
@@ -252,20 +269,23 @@ public class MenusDAO {
                     break;
 
                 case 3:
+                System.out.println("------------------------");
                     System.out.println("Deposit to account #: ");
                     int daccountnum = menuscan.nextInt();
+                    System.out.println("------------------------");
                     System.out.println("Deposit amount: ");
                     int damount = menuscan.nextInt();
                     td.deposit(daccountnum, damount);
                     break;
 
                 case 4:
+                System.out.println("------------------------");
                     System.out.println("From account #: ");
                     int fromacct = menuscan.nextInt();
-
+                    System.out.println("------------------------");
                     System.out.println("To account #: ");
                     int toacct = menuscan.nextInt();
-
+                    System.out.println("------------------------");
                     System.out.println("Amount to transfer: ");
                     int tamount = menuscan.nextInt();
 
@@ -273,14 +293,17 @@ public class MenusDAO {
                     break;
 
                 case 5:
+                System.out.println("------------------------");
                     System.out.println("Approve account #: ");
                     int acctnum = menuscan.nextInt();
                     String activate = "yes";
                     td.approveacct(acctnum, activate);
+                    System.out.println("------------------------");
                     System.out.println("You have approved account #: " + acctnum);
                     break;
 
                 case 6:
+                System.out.println("------------------------");
                     System.out.println("Close account #: ");
                     int acctnumb = menuscan.nextInt();
                     td.cancelacct(acctnumb);

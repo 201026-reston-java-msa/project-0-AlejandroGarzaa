@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 
 // implementation for customer methods 
 public class ValidationDAO {
+
     private static Logger log = Logger.getLogger(ValidationDAO.class);
 
     // method to find all customers in database (transaction)
@@ -34,7 +35,8 @@ public class ValidationDAO {
                 int balance = rs.getInt("balance");
 
                 // Customer c = new Customer(id, first_name, last_name, email, phone);
-                System.out.println("**********" + "\nId: " + id + "\nFirst Name: " + firstname + "\nLast Name: "
+                System.out.println("------------------------");
+                System.out.println("Id: " + id + "\nFirst Name: " + firstname + "\nLast Name: "
                         + lastname + "\nEmail: " + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum
                         + "\nAccount active: " + status + "\nBalance: $" + balance);
             }
@@ -55,24 +57,30 @@ public class ValidationDAO {
 
         Scanner reg = new Scanner(System.in);
 
+System.out.println("------------------------");
         System.out.println("Enter First Name: ");
         String fname = reg.nextLine();
+        System.out.println("------------------------");
         System.out.println("Enter Last Name: ");
         String lname = reg.nextLine();
+        System.out.println("------------------------");
         System.out.println("Enetr Email: ");
         String email = reg.nextLine();
+        System.out.println("------------------------");
         System.out.println("Enter Phone: ");
         int phone = reg.nextInt();
         reg.nextLine();
 
         do {
-
+            System.out.println("------------------------");
             System.out.println("Create Password: ");
             pass = reg.nextLine();
+            System.out.println("------------------------");
             System.out.println("Confirm Password: ");
             conpass = reg.nextLine();
 
             if (!pass.equals(conpass)) {
+    
                 System.out.println("Passwords did not match please redo");
             }
         } while (!pass.equals(conpass));
@@ -86,11 +94,13 @@ public class ValidationDAO {
             stmt.execute(sql);
             stmt.close();
             // ResultSet rs = stmt.executeQuery(sql);
+            System.out.println("------------------------");
             System.out.println("You are registered");
 
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
-            e.printStackTrace();
+            log.warn("Unable to create customer account");
+            
         }
 
         try (Connection conn = ConnectionUtil.getConnection()) {
@@ -107,7 +117,8 @@ public class ValidationDAO {
 
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
-            e.printStackTrace();
+            log.warn("Unable to create customer account");
+            
         }
 
     }
@@ -126,7 +137,8 @@ public class ValidationDAO {
 
         } catch (SQLException e) {
             System.out.println("Unable to Login");
-            // e.printStackTrace();
+            log.warn("Unable to verify user login");
+            
             return false;
         }
 
@@ -149,7 +161,8 @@ public class ValidationDAO {
 
         } catch (SQLException e) {
             System.out.println("Unable to Login");
-            // e.printStackTrace();
+            log.warn("Unable to verify password");
+            
             return false;
         }
 
@@ -191,7 +204,8 @@ public class ValidationDAO {
 
         } catch (SQLException e) {
             System.out.println("Account approval pending");
-            // e.printStackTrace();
+            log.warn("status of account not active ");
+            
             return false;
         }
 
