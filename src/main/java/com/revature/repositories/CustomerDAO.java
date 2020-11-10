@@ -114,14 +114,15 @@ public class CustomerDAO {
 
     // method to check username
     public boolean usercheck(String email) {
+        
 
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select email from customer where email = '" + email + "'";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
-            String result = rs.getString("email");
-            System.out.println(result);
+            rs.getString("email");
+            
             return true;
 
         } catch (SQLException e) {
@@ -129,6 +130,8 @@ public class CustomerDAO {
             // e.printStackTrace();
             return false;
         }
+        
+        
 
     }
 
@@ -175,6 +178,7 @@ public class CustomerDAO {
 
     // method to check account status
     public boolean status(String email, String password) {
+        
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
 
@@ -182,23 +186,18 @@ public class CustomerDAO {
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
             int id = rs.getInt("cust_id");
-            String sql2 = "select account_status from accounts where cust_id = '" + id + "'";
+            String sql2 = "select account_status from accounts where cust_id = '" + id + "' and account_status = 'yes'";
             ResultSet rs2 = stmt.executeQuery(sql2);
             rs2.next();
-            String stat = rs2.getString("account_status");
-            stmt.close();
+            rs2.getString("account_status"); 
+            return true;
 
-            if (stat.equalsIgnoreCase("yes")) {
-                return true;
-            } else {
-                return false;
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Unable to get access level");
+            }catch (SQLException e) {
+            System.out.println("Account approval pending");
             // e.printStackTrace();
             return false;
         }
+        
     }
 
     // method to approve account
