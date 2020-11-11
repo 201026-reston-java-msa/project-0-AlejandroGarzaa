@@ -12,7 +12,7 @@ public class TransactionsDAO {
     private static Logger log = Logger.getLogger(TransactionsDAO.class);
 
     // check balance method
-    public boolean balance(String email, String password)  {
+    public boolean balance(String email, String password) {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
@@ -34,13 +34,12 @@ public class TransactionsDAO {
             stmt.close();
             log.info("Balance accessed successfully");
             return true;
-           
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Unable to get balance");
             log.warn("Unable to get balance");
-            
+
             return false;
         }
     }
@@ -75,7 +74,7 @@ public class TransactionsDAO {
                 System.out.println("unable to perform transaction");
                 log.warn("Unable to withdraw");
             }
-            
+
             return true;
 
         } catch (SQLException e) {
@@ -113,7 +112,7 @@ public class TransactionsDAO {
                 System.out.println("unable to perform transaction");
                 log.warn("Unable to make deposit");
             }
-            
+
             return true;
 
         } catch (SQLException e) {
@@ -221,12 +220,10 @@ public class TransactionsDAO {
             System.out.println("------------------------");
             System.out.println("Account number " + acctnumb + " has been closed.");
             log.info("Account close executed");
-            
 
         } catch (SQLException e) {
             System.out.println("Unable to close account.");
             log.warn("Unable to close account");
-           
 
         }
 

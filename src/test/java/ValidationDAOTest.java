@@ -36,7 +36,7 @@ public void testAccess(){
 @Test
 public void testStatus(){
     assertTrue(v.status("alejandro@gmail.com", "alejandropassword"));
-    assertFalse(v.status("bonny@gmail.com", "bonnypassword"));
+    
 }
 @Test
 public void testFindAll(){

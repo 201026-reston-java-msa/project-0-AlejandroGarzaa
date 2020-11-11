@@ -95,7 +95,6 @@ public class MenusDAO {
 
     }
 
-
     // customer menu
     public void custMenu(String email, String password) throws PSQLException {
         int select;

@@ -29,12 +29,9 @@ public class ValidationDAO {
                 String lastname = rs.getString("last_name");
                 String email = rs.getString("email");
                 int phone = rs.getInt("phone");
-                // int access = rs.getInt("access_level");
                 int acctnum = rs.getInt("account_number");
                 String status = rs.getString("account_status");
                 int balance = rs.getInt("balance");
-
-                // Customer c = new Customer(id, first_name, last_name, email, phone);
                 System.out.println("------------------------");
                 System.out.println("Id: " + id + "\nFirst Name: " + firstname + "\nLast Name: " + lastname + "\nEmail: "
                         + email + "\nPhone: " + phone + "\nAccount Number: " + acctnum + "\nAccount active: " + status
@@ -95,7 +92,6 @@ public class ValidationDAO {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
             stmt.close();
-            // ResultSet rs = stmt.executeQuery(sql);
             System.out.println("------------------------");
             System.out.println("You are registered");
             log.info("new user registered");
@@ -190,7 +186,6 @@ public class ValidationDAO {
         } catch (SQLException e) {
             System.out.println("Unable to Login");
             log.warn("unable to determine access");
-            // e.printStackTrace();
             return 0;
         }
     }
