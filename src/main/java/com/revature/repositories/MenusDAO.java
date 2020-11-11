@@ -21,8 +21,8 @@ public class MenusDAO {
 
             System.out.println("------------------------");
             System.out.println("Welcome to banking app");
-            System.out.println("1. Login");
-            System.out.println("2. Create account");
+            System.out.println("1. Create Account");
+            System.out.println("2. Login");
             System.out.println("3. Exit");
             System.out.println("------------------------");
 
@@ -30,6 +30,13 @@ public class MenusDAO {
 
             switch (initial) {
                 case 1:
+                    System.out.println("------------------------");
+                    System.out.println("Create account");
+                    cd.register();
+                    break;
+                    
+                
+                case 2:
                     scan1.nextLine();
                     System.out.println("Login");
                     System.out.println("------------------------");
@@ -79,11 +86,11 @@ public class MenusDAO {
                     }
                     break;
 
-                case 2:
-                    System.out.println("------------------------");
-                    System.out.println("Create account");
-                    cd.register();
-                    break;
+                // case 2:
+                //     System.out.println("------------------------");
+                //     System.out.println("Create account");
+                //     cd.register();
+                //     break;
 
                 case 3:
                     System.out.println("------------------------");
