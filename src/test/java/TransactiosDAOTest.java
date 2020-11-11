@@ -1,30 +1,35 @@
-// import static org.junit.Assert.assertEquals;
 
-// import java.sql.SQLException;
+import static org.junit.Assert.assertTrue;
 
-// import com.revature.repositories.TransactionsDAO;
+import com.revature.repositories.TransactionsDAO;
+import org.junit.Test;
 
-// import org.junit.Rule;
-// import org.junit.Test;
-// import org.junit.internal.runners.statements.ExpectException;
-// import org.junit.rules.ExpectedException;
-// import org.postgresql.util.PSQLException;
+public class TransactiosDAOTest {
 
-// public class TransactiosDAOTest {
+    TransactionsDAO t = new TransactionsDAO();
 
-// private static final TransactionsDAO transaction = new TransactionsDAO();
+    @Test
+    public void testtransfer(){
+        assertTrue(t.transfer(1, 4, 1));
+    }
 
-// @Rule
-// public ExpectedException expected = ExpectedException.none();
+    @Test
+    public void testDeposit(){
+        assertTrue(t.deposit(1, 2));
+    }
 
-// 	@Test
-// 	public void testBalance()  {
-// 		expected.expect(PSQLException.class);
-// 		//transaction.balance("bonny@gmail.com", "bonny");
+    @Test
+    public void testWithdraw(){
+        assertTrue(t.withdraw(1, 2));
+    }
 
-		
-// 	}
+    @Test
+    public void testBalance(){
+        assertTrue(t.balance("alejandro@gmail.com", "alejandropassword"));
+    }
+
+
 
 	
+}
 
-//}

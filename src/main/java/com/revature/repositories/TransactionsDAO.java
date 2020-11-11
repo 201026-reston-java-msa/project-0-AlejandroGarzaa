@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.apache.log4j.Logger;
-import org.postgresql.util.PSQLException;
 
 import com.revature.util.ConnectionUtil;
 
@@ -13,7 +12,7 @@ public class TransactionsDAO {
     private static Logger log = Logger.getLogger(TransactionsDAO.class);
 
     // check balance method
-    public void balance(String email, String password) throws PSQLException {
+    public boolean balance(String email, String password)  {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
             String sql = "select cust_id from customer where email = '" + email + "' and passcode = '" + password + "'";
@@ -33,17 +32,19 @@ public class TransactionsDAO {
                 System.out.println("Id: " + id + "\nAccount Number: " + accountnum + "\nBalance: $" + accountbalance);
             }
             stmt.close();
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Unable to get balance");
             log.warn("Unable to get balance");
+            return false;
         }
     }
 
     // withdraw method
 
-    public void withdraw(int accountnum, int amount) {
+    public boolean withdraw(int accountnum, int amount) {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
 
@@ -69,15 +70,17 @@ public class TransactionsDAO {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
             }
+            return true;
 
         } catch (SQLException e) {
             System.out.println("Unable to access account");
             log.warn("Unable to withdraw");
+            return false;
         }
     }
 
     // deposit method
-    public void deposit(int daccountnum, int damount) {
+    public boolean deposit(int daccountnum, int damount) {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
 
@@ -102,15 +105,17 @@ public class TransactionsDAO {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
             }
+            return true;
 
         } catch (SQLException e) {
             System.out.println("Unable to access account");
             log.warn("Unable to make deposit");
+            return false;
         }
     }
 
     // transfer method
-    public void transfer(int fromacct, int toacct, int tamount) {
+    public boolean transfer(int fromacct, int toacct, int tamount) {
 
         try (Connection conn = ConnectionUtil.getConnection()) {
 
@@ -144,11 +149,13 @@ public class TransactionsDAO {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
             }
+            return true;
 
         } catch (SQLException e) {
 
             System.out.println("Unable to access account");
             log.warn("Unable to make transfer");
+            return false;
         }
     }
 
@@ -200,10 +207,12 @@ public class TransactionsDAO {
             stmt.execute(sql);
             System.out.println("------------------------");
             System.out.println("Account number " + acctnumb + " has been closed.");
+            
 
         } catch (SQLException e) {
             System.out.println("Unable to close account.");
             log.warn("Unable to close account");
+           
 
         }
 
