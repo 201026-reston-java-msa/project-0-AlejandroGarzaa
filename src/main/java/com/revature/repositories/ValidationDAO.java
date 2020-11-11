@@ -63,7 +63,7 @@ public class ValidationDAO {
         System.out.println("Enter Last Name: ");
         String lname = reg.nextLine();
         System.out.println("------------------------");
-        System.out.println("Enetr Email: ");
+        System.out.println("Enter Email: ");
         String email = reg.nextLine();
         System.out.println("------------------------");
         System.out.println("Enter Phone: ");

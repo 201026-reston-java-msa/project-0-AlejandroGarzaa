@@ -108,3 +108,95 @@
 2020-11-10 16:45:28 WARN  ValidationDAO:207 - status of account not active 
 2020-11-10 16:45:42 WARN  ValidationDAO:207 - status of account not active 
 2020-11-10 19:22:54 INFO  MenusDAO:86 - user has exited app
+2020-11-10 22:51:42 INFO  ValidationDAO:97 - new user registered
+2020-11-10 22:51:42 INFO  ValidationDAO:116 - new user account created
+2020-11-10 22:52:16 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 22:58:34 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 22:59:00 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 22:59:08 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 22:59:35 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:00:39 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:00:50 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:03:21 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:03:23 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:03:27 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:03:37 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:04:08 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:04:46 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:04:48 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:04:52 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:04:58 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:06:07 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:06:15 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:06:17 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:06:24 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:06:24 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:06:28 INFO  ValidationDAO:161 - wrong password was enterd
+2020-11-10 23:06:28 INFO  ValidationDAO:161 - wrong password was enterd
+2020-11-10 23:06:42 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:06:42 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:06:42 WARN  ValidationDAO:212 - status of account not active 
+2020-11-10 23:06:42 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:06:42 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:06:42 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:09:43 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:09:47 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:09:52 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:11:20 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:11:20 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:12:48 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:12:48 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:12:48 WARN  ValidationDAO:212 - status of account not active 
+2020-11-10 23:12:48 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:12:48 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:12:48 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:15:55 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:18:11 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:19:38 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:19:43 WARN  ValidationDAO:141 - Unable to verify user login
+2020-11-10 23:20:03 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:20:03 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:20:07 INFO  ValidationDAO:161 - wrong password was enterd
+2020-11-10 23:20:07 INFO  ValidationDAO:161 - wrong password was enterd
+2020-11-10 23:20:15 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:20:15 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:20:15 WARN  ValidationDAO:212 - status of account not active 
+2020-11-10 23:20:15 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:20:15 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:20:15 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:22:18 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:22:18 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:22:24 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:22:24 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:22:24 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:22:24 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:22:26 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:26:23 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:26:23 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:26:29 INFO  ValidationDAO:161 - wrong password was enterd
+2020-11-10 23:26:29 INFO  ValidationDAO:161 - wrong password was enterd
+2020-11-10 23:26:37 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:26:37 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:26:37 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:28:27 INFO  TransactionsDAO:204 - account approval successful
+2020-11-10 23:28:45 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:28:45 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:29:02 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:29:02 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:29:08 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:29:08 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:29:08 INFO  ValidationDAO:207 - account status retrieved
+2020-11-10 23:29:25 INFO  TransactionsDAO:35 - Balance accessed successfully
+2020-11-10 23:29:52 INFO  TransactionsDAO:109 - Deposit executed successfully
+2020-11-10 23:30:59 INFO  TransactionsDAO:186 - new account created, pending approval
+2020-11-10 23:31:10 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:31:11 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:31:11 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:31:32 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:31:32 INFO  ValidationDAO:135 - user validation successful
+2020-11-10 23:31:38 INFO  ValidationDAO:158 - password has been verified
+2020-11-10 23:31:38 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:31:38 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:31:38 INFO  ValidationDAO:183 - access has been determined
+2020-11-10 23:33:09 INFO  TransactionsDAO:222 - Account close executed
+2020-11-10 23:34:40 INFO  ValidationDAO:158 - password has been verified

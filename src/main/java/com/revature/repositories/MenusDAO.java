@@ -30,11 +30,16 @@ public class MenusDAO {
 
             switch (initial) {
                 case 1:
+                    scan1.nextLine();
                     System.out.println("Login");
                     System.out.println("------------------------");
                     System.out.println("Enter Username(email): ");
-                    scan1.nextLine();
                     email = scan1.nextLine();
+                    while (cd.usercheck(email) != true) {
+                        System.out.println("User not found, re-enter username: ");
+                        email = scan1.nextLine();
+                    }
+
                     if (cd.usercheck(email) == true) {
                         do {
                             System.out.println("------------------------");
