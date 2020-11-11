@@ -11,7 +11,7 @@ public class MenusDAO {
     ValidationDAO cd = new ValidationDAO();
 
     // Main menu method
-    public void mainMenu() throws PSQLException {
+    public void mainMenu() throws PSQLException{
 
         String email;
         String password;
