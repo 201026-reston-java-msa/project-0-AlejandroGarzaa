@@ -32,12 +32,15 @@ public class TransactionsDAO {
                 System.out.println("Id: " + id + "\nAccount Number: " + accountnum + "\nBalance: $" + accountbalance);
             }
             stmt.close();
+            log.info("Balance accessed successfully");
             return true;
+           
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Unable to get balance");
             log.warn("Unable to get balance");
+            
             return false;
         }
     }
@@ -66,10 +69,13 @@ public class TransactionsDAO {
 
                 System.out.println("------------------------");
                 System.out.println("Account Number: " + accountnum + "\nNew Balance: " + newaccountbalance);
+                log.info("Withdraw completed successfully");
             } else {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
+                log.warn("Unable to withdraw");
             }
+            
             return true;
 
         } catch (SQLException e) {
@@ -101,10 +107,13 @@ public class TransactionsDAO {
                 System.out.println("Account Number: " + daccountnum + "\nPrevious Balance: " + accountbalance);
                 System.out.println("------------------------");
                 System.out.println("Account Number: " + daccountnum + "\nNew Balance: " + newaccountbalance);
+                log.info("Deposit executed successfully");
             } else {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
+                log.warn("Unable to make deposit");
             }
+            
             return true;
 
         } catch (SQLException e) {
@@ -144,10 +153,12 @@ public class TransactionsDAO {
                 String sql4 = "update accounts set balance = '" + newtobalance + "' where account_number = '" + toacct
                         + "' and account_status = 'yes'";
                 stmt.execute(sql4);
+                log.info("Transfer executed successfully");
 
             } else {
                 System.out.println("------------------------");
                 System.out.println("unable to perform transaction");
+                log.warn("Unable to make transfer");
             }
             return true;
 
@@ -173,6 +184,7 @@ public class TransactionsDAO {
             stmt.close();
             System.out.println("------------------------");
             System.out.println("Your account is pending approval.");
+            log.info("new account created, pending approval");
 
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
@@ -190,6 +202,7 @@ public class TransactionsDAO {
             stmt.execute(sql);
             System.out.println("------------------------");
             System.out.println("Account number " + acctnum + " has been activated.");
+            log.info("account approval successful");
 
         } catch (SQLException e) {
             System.out.println("Unable to approve account");
@@ -207,6 +220,7 @@ public class TransactionsDAO {
             stmt.execute(sql);
             System.out.println("------------------------");
             System.out.println("Account number " + acctnumb + " has been closed.");
+            log.info("Account close executed");
             
 
         } catch (SQLException e) {
