@@ -98,6 +98,7 @@ public class ValidationDAO {
             // ResultSet rs = stmt.executeQuery(sql);
             System.out.println("------------------------");
             System.out.println("You are registered");
+            log.info("new user registered");
 
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
@@ -116,6 +117,7 @@ public class ValidationDAO {
             stmt.execute(sql2);
             stmt.close();
             System.out.println("Your Account has been created. Go to Login.");
+            log.info("new user account created");
 
         } catch (SQLException e) {
             System.out.println("Unable to create customer account");
@@ -134,6 +136,7 @@ public class ValidationDAO {
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
             rs.getString("email");
+            log.info("user validation successful");
 
             return true;
 
@@ -156,8 +159,10 @@ public class ValidationDAO {
             rs.next();
             String result = rs.getString("passcode");
             if (result.equals(password)) {
+                log.info("password has been verified");
                 return true;
             } else {
+                log.info("wrong password was enterd");
                 return false;
             }
 
@@ -179,10 +184,12 @@ public class ValidationDAO {
             ResultSet rs = stmt.executeQuery(sql);
             rs.next();
             int result = rs.getInt("access_level");
+            log.info("access has been determined");
             return result;
 
         } catch (SQLException e) {
             System.out.println("Unable to Login");
+            log.warn("unable to determine access");
             // e.printStackTrace();
             return 0;
         }
@@ -202,6 +209,7 @@ public class ValidationDAO {
             ResultSet rs2 = stmt.executeQuery(sql2);
             rs2.next();
             rs2.getString("account_status");
+            log.info("account status retrieved");
             return true;
 
         } catch (SQLException e) {
